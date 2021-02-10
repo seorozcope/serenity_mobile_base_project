@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import static co.com.devco.userinterface.HomePage.LBL_NAME_PRODUCT;
 import static co.com.devco.userinterface.ProductPage.BTN_ADD_TO_CART;
 import static co.com.devco.userinterface.ProductPage.BTN_BACK_TO_HOME;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
 public class AddProducts implements Task {
 
@@ -32,6 +34,7 @@ public class AddProducts implements Task {
                                         Scroll.untilVisibleTarget(LBL_NAME_PRODUCT.of(nameProduct.get(product).get("products"))),
                                         Click.on(LBL_NAME_PRODUCT.of(nameProduct.get(product).get("products"))),
                                         Scroll.untilVisibleTarget(BTN_ADD_TO_CART),
+                                        WaitUntil.the(BTN_ADD_TO_CART, isClickable()).forNoMoreThan(3).seconds(),
                                         Click.on(BTN_ADD_TO_CART),
                                         Click.on(BTN_BACK_TO_HOME)));
     }

@@ -20,6 +20,7 @@ import java.util.Map;
 import static co.com.devco.exceptions.PurchaseIsNotCompleteException.PURCHASE_FAILED_MESSAGE_EXCEPTION;
 import static co.com.devco.tasks.Checkout.checkout;
 import static co.com.devco.userinterface.CheckoutCompletadoPage.LBL_CHECKOUT_COMPLETE;
+import static net.serenitybdd.screenplay.EventualConsequence.eventually;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -52,7 +53,7 @@ public class BuyingProductsStepDefinition {
 
     @Then("He should see that his purchase is successful")
     public void actorShouldSeePurchase() {
-        theActorInTheSpotlight().should(seeThat(Purchase.isSuccesful()).orComplainWith(PurchaseIsNotCompleteException.class, PURCHASE_FAILED_MESSAGE_EXCEPTION));
+        theActorInTheSpotlight().should(eventually(seeThat(Purchase.isSuccesful())).orComplainWith(PurchaseIsNotCompleteException.class, PURCHASE_FAILED_MESSAGE_EXCEPTION));
     }
 
     @Then("He should see the message (.*)")

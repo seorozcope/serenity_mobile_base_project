@@ -7,6 +7,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.SendKeys;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static co.com.devco.userinterface.CheckoutPage.BTN_CHECKOUT;
 import static co.com.devco.userinterface.CheckoutPage.BTN_CONTINUE;
@@ -16,6 +17,7 @@ import static co.com.devco.userinterface.CheckoutPage.TXT_NAME;
 import static co.com.devco.userinterface.CheckoutPage.TXT_POST_CODE;
 import static co.com.devco.userinterface.ProductPage.BTN_OPEN_SHOP_CART;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
 public class Checkout implements Task {
     @Override
@@ -29,6 +31,7 @@ public class Checkout implements Task {
                 SendKeys.of("050005").into(TXT_POST_CODE),
                 Click.on(BTN_CONTINUE),
                 Scroll.untilVisibleTarget(BTN_FINISH),
+                WaitUntil.the(BTN_FINISH,isClickable()).forNoMoreThan(5).seconds(),
                 Click.on(BTN_FINISH));
     }
 
