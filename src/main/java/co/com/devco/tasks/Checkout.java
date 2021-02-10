@@ -6,16 +6,16 @@ import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.ScrollTo;
 import net.serenitybdd.screenplay.actions.SendKeys;
-import net.serenitybdd.screenplay.conditions.Check;
-import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static co.com.devco.userinterface.CheckoutPage.*;
-import static co.com.devco.userinterface.ProductPage.BTN_ADD_TO_CART;
+import static co.com.devco.userinterface.CheckoutPage.BTN_CHECKOUT;
+import static co.com.devco.userinterface.CheckoutPage.BTN_CONTINUE;
+import static co.com.devco.userinterface.CheckoutPage.BTN_FINISH;
+import static co.com.devco.userinterface.CheckoutPage.TXT_LAST_NAME;
+import static co.com.devco.userinterface.CheckoutPage.TXT_NAME;
+import static co.com.devco.userinterface.CheckoutPage.TXT_POST_CODE;
 import static co.com.devco.userinterface.ProductPage.BTN_OPEN_SHOP_CART;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
 public class Checkout implements Task {
     @Override
