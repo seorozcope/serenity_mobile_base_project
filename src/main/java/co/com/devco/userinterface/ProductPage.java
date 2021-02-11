@@ -8,11 +8,11 @@ import static co.com.devco.automation.mobile.locator.Locator.locator;
 
 public class ProductPage {
     public static final Locator BTN_ADD_TO_CART_LOCATOR = locator().withAndroidXpathStatic("//android.view.ViewGroup[@content-desc='test-ADD TO CART']" )
-            .withIosXpathDynamic("1" );
+            .withIosAccesibilityId("test-ADD TO CART" );
     public static final Locator BTN_BACK_TO_HOME_LOCATOR = locator().withAndroidXpathStatic("//android.view.ViewGroup[@content-desc='test-BACK TO PRODUCTS']" )
-            .withIosXpathDynamic("1" );
+            .withIosAccesibilityId("test-BACK TO PRODUCTS" );
     public static final Locator BTN_OPEN_SHOP_CART_LOCATOR = locator().withAndroidXpathStatic("//android.view.ViewGroup[@content-desc='test-Cart']" )
-            .withIosXpathDynamic("1" );
+            .withIosAccesibilityId("test-Cart" );
 
 
     public static final Target BTN_ADD_TO_CART = Target.the("Button Add Product to Cart").located(theElementBy(BTN_ADD_TO_CART_LOCATOR));

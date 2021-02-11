@@ -29,6 +29,7 @@ public class Checkout implements Task {
                 Enter.theValue("Juan").into(TXT_NAME),
                 Enter.theValue("Fernandez").into(TXT_LAST_NAME),
                 SendKeys.of("050005").into(TXT_POST_CODE),
+                Scroll.untilVisibleTarget(BTN_CONTINUE),
                 Click.on(BTN_CONTINUE),
                 Scroll.untilVisibleTarget(BTN_FINISH),
                 WaitUntil.the(BTN_FINISH,isClickable()).forNoMoreThan(5).seconds(),
