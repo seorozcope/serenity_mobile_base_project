@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/buying_products.feature",
         glue = "co.com.devco.stepdefinitions",
-        tags = "@BuyProducts",
+        tags = "@BuyProduct",
         snippets = SnippetType.CAMELCASE
 )
-public class BuyingProductsRunner {
+public class BuyingProductRunner {
 }
