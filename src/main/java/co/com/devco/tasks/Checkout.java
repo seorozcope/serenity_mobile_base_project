@@ -24,14 +24,14 @@ public class Checkout implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(BTN_OPEN_SHOP_CART),
-                Scroll.untilVisibleTarget(BTN_CHECKOUT),
+                Scroll.untilVisibleTarget(BTN_CHECKOUT).toBottom().untilMaxAttempts(10),
                 Click.on(BTN_CHECKOUT),
                 Enter.theValue("Juan").into(TXT_NAME),
                 Enter.theValue("Fernandez").into(TXT_LAST_NAME),
                 SendKeys.of("050005").into(TXT_POST_CODE),
-                Scroll.untilVisibleTarget(BTN_CONTINUE),
+                Scroll.untilVisibleTarget(BTN_CONTINUE).toBottom().untilMaxAttempts(3),
                 Click.on(BTN_CONTINUE),
-                Scroll.untilVisibleTarget(BTN_FINISH),
+                Scroll.untilVisibleTarget(BTN_FINISH).toBottom().untilMaxAttempts(10),
                 WaitUntil.the(BTN_FINISH,isClickable()).forNoMoreThan(5).seconds(),
                 Click.on(BTN_FINISH));
     }
