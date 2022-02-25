@@ -1,8 +1,11 @@
 package co.com.devco.stepdefinitions;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import io.appium.java_client.AppiumDriver;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
@@ -12,32 +15,41 @@ import java.util.logging.Logger;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getProxiedDriver;
 
 public class Hooks {
-    @Managed(driver = "Appium" )
-    public static WebDriver thePhone;
+
+    @Managed(driver = "Appium")
+    public static WebDriver driver;
     private static boolean beforeAll = true;
+    private static boolean afterFirst = true;
 
     @Before
     public void setUp() {
         if (beforeAll) {
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {
-                    thePhone.quit();
-                    thePhone = null;
+                    driver.quit();
+                    driver = null;
                 }
             });
             beforeAll = false;
         }
+        OnStage.setTheStage(OnlineCast.whereEveryoneCan(BrowseTheWeb.with(getProxiedDriver())));
     }
 
     @After
     public void logOut() {
         try {
-            WebDriver facade = getProxiedDriver();
-            ((AppiumDriver) facade).closeApp();
-            ((AppiumDriver) facade).launchApp();
+            AppiumDriver facade=null;
+            if (afterFirst) {
+                afterFirst=false;
+            }else{
+                facade= getProxiedDriver();
+            }
+
+            if(facade!=null){
+                facade.quit();
+            }
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Could not close driver. AppiumDriver not found", ex);
         }
-
     }
 }
