@@ -11,7 +11,7 @@ import static co.com.devco.userinterface.ProductPage.BTN_ADD_TO_CART;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class AddProduct implements Task {
-    private String nameProduct;
+    private final String nameProduct;
 
     public AddProduct(String nameProduct) {
         this.nameProduct = nameProduct;
@@ -20,9 +20,9 @@ public class AddProduct implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Scroll.untilVisibleTarget(LBL_NAME_PRODUCT.of(nameProduct)),
+                Scroll.untilVisibleTarget(LBL_NAME_PRODUCT.of(nameProduct)).toBottom().untilMaxAttempts(5),
                 Click.on(LBL_NAME_PRODUCT.of(nameProduct)),
-                Scroll.untilVisibleTarget(BTN_ADD_TO_CART),
+                Scroll.untilVisibleTarget(BTN_ADD_TO_CART).toBottom().untilMaxAttempts(5),
                 Click.on(BTN_ADD_TO_CART));
     }
 

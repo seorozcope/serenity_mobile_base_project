@@ -1,15 +1,18 @@
 package co.com.devco.runners;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
+
+import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
+
+import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
+
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         features = "src/test/resources/features/buying_products.feature",
         glue = "co.com.devco.stepdefinitions",
-        snippets = SnippetType.CAMELCASE
+        snippets = CAMELCASE
 )
 public class BuyingProductsRunner {
 }

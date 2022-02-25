@@ -29,9 +29,9 @@ public class AddProducts implements Task {
                 .forEach(
                         (product) ->
                                 actor.attemptsTo(
-                                        Scroll.untilVisibleTarget(LBL_NAME_PRODUCT.of(nameProduct.get(product).get("products"))),
+                                        Scroll.untilVisibleTarget(LBL_NAME_PRODUCT.of(nameProduct.get(product).get("products"))).toBottom().untilMaxAttempts(3),
                                         Click.on(LBL_NAME_PRODUCT.of(nameProduct.get(product).get("products"))),
-                                        Scroll.untilVisibleTarget(BTN_ADD_TO_CART),
+                                        Scroll.untilVisibleTarget(BTN_ADD_TO_CART).toBottom().untilMaxAttempts(5),
                                         Click.on(BTN_ADD_TO_CART),
                                         Click.on(BTN_BACK_TO_HOME)));
     }
